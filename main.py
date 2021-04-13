@@ -38,7 +38,7 @@ screen.onkey(stop_game, "space")
 
 
 while GAME_IS_ON:
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
 
@@ -54,14 +54,15 @@ while GAME_IS_ON:
     if ball.xcor() > 350 or ball.xcor() < -350:
 
         if ball.xcor() > 350:
-            print("Right Paddle Loses")
             scoreboard.add_point("left")
         else:
-            print("Left Paddle Loses")
             scoreboard.add_point("right")
 
         time.sleep(1)
         ball.reset_ball()
+
+    if not scoreboard.waiting_for_winner:
+        GAME_IS_ON = False
 
 
 screen.exitonclick()
