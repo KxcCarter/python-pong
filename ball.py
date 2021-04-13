@@ -11,16 +11,20 @@ class Ball(Turtle):
         self.color("white")
         self.random_y = random.randint(-250, 250)
         self.penup()
+        self.x_move = 10
+        self.y_move = 10
 
     def move(self):
-        # self.goto(random.choice(LEFT_OR_RIGHT), self.random_y)
-        new_x = self.xcor() + 5
-        new_y = self.ycor() + 5
+        """
+        Direction should be either 1 or -1, which is multiplied by the xcor and ycor to reverse movement.
+
+        """
+        new_x = self.xcor() + self.x_move
+        new_y = self.ycor() + self.y_move
         self.goto(new_x, new_y)
 
+    def y_bounce(self):
+        self.y_move *= -1
 
-
-    # automate movement
-    def move_ball(self):
-        random_x = random.randint(-330, 330)
-        random_y = random.randint(-260, 260)
+    def x_bounce(self):
+        self.x_move *= -1

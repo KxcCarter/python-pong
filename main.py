@@ -37,4 +37,13 @@ while GAME_IS_ON:
     screen.update()
     ball.move()
 
+    if ball.ycor() > 280 or ball.ycor() < -280:
+        print("Oh man I lost my ball :[")
+        ball.y_bounce()
+    # detect collision with paddle
+    if (ball.distance(r_paddle) < 50 or ball.distance(l_paddle)) and (ball.xcor() > 340 or ball.xcor() < -340):
+        print('we bouncin')
+        ball.x_bounce()
+
+
 screen.exitonclick()
