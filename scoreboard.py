@@ -13,6 +13,7 @@ class Scoreboard(Turtle):
         self.hideturtle()
         self.left_score = 0
         self.right_score = 0
+        self.winner = ''
         self.waiting_for_winner = True
         self.goto(0, 200)
         self.update_scores()
@@ -32,5 +33,15 @@ class Scoreboard(Turtle):
     def check_for_winner(self):
         if self.left_score >= POINTS_TO_WIN or self.right_score >= POINTS_TO_WIN:
             self.waiting_for_winner = False
-            self.goto(0, 0)
-            self.write("GAME OVER", align="center", font=FONT_PARAMS)
+            self.announce_winner()
+
+    def announce_winner(self):
+        if self.left_score >= POINTS_TO_WIN:
+            self.winner = 'Left Player'
+        elif self.right_score >= POINTS_TO_WIN:
+            self.winner = 'Right Player'
+
+        self.goto(0, 0)
+        self.write("GAME OVER", align="center", font=FONT_PARAMS)
+        self.goto(0, -50)
+        self.write(f"{self.winner} wins", align="center", font=("Courier", 40, "normal"))
