@@ -1,15 +1,10 @@
 from turtle import Turtle
-import random
-
-LEFT_OR_RIGHT = [-330, 330]
-
 
 class Ball(Turtle):
     def __init__(self):
         super().__init__()
         self.shape("square")
         self.color("white")
-        self.random_y = random.randint(-250, 250)
         self.penup()
         self.x_move = 10
         self.y_move = 10
