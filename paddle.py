@@ -3,16 +3,22 @@ from turtle import Turtle
 class Paddle(Turtle):
     def __init__(self):
         super().__init__()
-
-        self.goto(-280, 0)
-        self.paddle_segments = []
+        self.paddle = None
         self.create_paddle()
 
     def create_paddle(self):
-        for _ in range(0, 3):
-            new_segment = Turtle("square")
-            new_segment.color("white")
-            new_segment.penup()
-            self.paddle_segments.append(new_segment)
+        self.paddle = Turtle('square')
+        self.paddle.hideturtle()
+        self.paddle.color("white")
+        self.paddle.shapesize(stretch_wid=5, stretch_len=1)
+        self.paddle.penup()
+        self.paddle.goto(350, 0)
+        self.paddle.showturtle()
 
-    # Add controls here?
+    def paddle_up(self):
+        new_y = self.paddle.ycor() + 20
+        self.paddle.goto(self.paddle.xcor(), new_y)
+
+    def paddle_down(self):
+        new_y = self.paddle.ycor() - 20
+        self.paddle.goto(self.paddle.xcor(), new_y)
