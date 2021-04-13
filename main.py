@@ -1,5 +1,5 @@
 from turtle import Screen
-
+import time
 from ball import Ball
 from paddle import Paddle
 from scoreboard import Scoreboard
@@ -11,20 +11,30 @@ screen = Screen()
 screen.bgcolor("black")
 screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
 screen.title("Pong")
+screen.tracer(0)
+GAME_IS_ON = True
 
 
-player_paddle = Paddle((350, 0))
+r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
 scoreboard = Scoreboard()
-# ball = Ball()
+ball = Ball()
 
 
 
 screen.listen()
 
 
-screen.onkey(player_paddle.paddle_up, "Up")
-screen.onkey(player_paddle.paddle_down, "Down")
+screen.onkey(r_paddle.paddle_up, "Up")
+screen.onkey(r_paddle.paddle_down, "Down")
 
+screen.onkey(l_paddle.paddle_up, "w")
+screen.onkey(l_paddle.paddle_down, "s")
+
+
+while GAME_IS_ON:
+    time.sleep(0.1)
+    screen.update()
+    ball.move()
 
 screen.exitonclick()
