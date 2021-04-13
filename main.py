@@ -13,8 +13,8 @@ screen.setup(SCREEN_WIDTH, SCREEN_HEIGHT)
 screen.title("Pong")
 
 
-
-player_paddle = Paddle()
+player_paddle = Paddle((350, 0))
+l_paddle = Paddle((-350, 0))
 scoreboard = Scoreboard()
 # ball = Ball()
 
