@@ -21,6 +21,10 @@ scoreboard = Scoreboard()
 ball = Ball()
 
 
+def stop_game():
+    global GAME_IS_ON
+    GAME_IS_ON = False
+
 
 screen.listen()
 
@@ -30,6 +34,7 @@ screen.onkey(r_paddle.paddle_down, "Down")
 
 screen.onkey(l_paddle.paddle_up, "w")
 screen.onkey(l_paddle.paddle_down, "s")
+screen.onkey(stop_game, "space")
 
 
 while GAME_IS_ON:
@@ -42,17 +47,19 @@ while GAME_IS_ON:
         ball.y_bounce()
 
     # detect collision with paddles
-    if (ball.distance(r_paddle) < 50 or ball.distance(l_paddle) < 50) and (ball.xcor() > 340 or ball.xcor() < -340):
+    if (ball.distance(r_paddle) < 50 or ball.distance(l_paddle) < 50) and (ball.xcor() > 320 or ball.xcor() < -320):
         ball.x_bounce()
 
     # detect if ball has gone beyond paddles
     if ball.xcor() > 350 or ball.xcor() < -350:
-        GAME_IS_ON = False
 
         if ball.xcor() > 350:
             print("Right Paddle Loses")
         else:
             print("Left Paddle Loses")
+
+        time.sleep(1)
+        ball.reset_ball()
 
 
 screen.exitonclick()
