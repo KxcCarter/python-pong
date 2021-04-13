@@ -17,8 +17,8 @@ GAME_IS_ON = True
 
 r_paddle = Paddle((350, 0))
 l_paddle = Paddle((-350, 0))
-scoreboard = Scoreboard()
 ball = Ball()
+scoreboard = Scoreboard()
 
 
 def stop_game():
@@ -55,8 +55,10 @@ while GAME_IS_ON:
 
         if ball.xcor() > 350:
             print("Right Paddle Loses")
+            scoreboard.add_point("left")
         else:
             print("Left Paddle Loses")
+            scoreboard.add_point("right")
 
         time.sleep(1)
         ball.reset_ball()
